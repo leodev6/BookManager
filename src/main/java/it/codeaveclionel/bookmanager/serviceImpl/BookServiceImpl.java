@@ -19,7 +19,7 @@ import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional()
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
@@ -46,8 +46,8 @@ public class BookServiceImpl implements BookService {
         Book book = bookMapper.toEntity(request);
 
         //Si marqué lu dès la création et pas de dataRead -> on la renseigne automatiquement
-        if (book.isRead() && book.getDateRead() == null) {
-            book.setDateRead(LocalDate.now());
+        if (book.isRead() && book.getDate_read() == null) {
+            book.setDate_read(LocalDate.now());
         }
         return bookMapper.toResponse(bookRepository.save(book));
     }

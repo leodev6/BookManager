@@ -10,7 +10,7 @@ public record BookResponse(
         String description,
         String category,
         boolean isRead,
-        LocalDate dateAdded,
-        LocalDate dateRead
+        LocalDate date_added,
+        LocalDate date_read
 ) {
 }

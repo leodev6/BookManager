@@ -16,7 +16,7 @@ public class BookMapper {
                 book.getCategory(),
                 book.isRead(),
                 book.getDateAdded(),
-                book.getDateRead()
+                book.getDate_read()
         );
     }
 
@@ -26,7 +26,7 @@ public class BookMapper {
                 .author(request.author())
                 .category(request.category())
                 .isRead(request.isRead())
-                .dateRead(request.dateRead())
+                .date_read(request.date_read())
                 .description(request.description())
                 .build();
     }
@@ -37,6 +37,6 @@ public class BookMapper {
         book.setDescription(request.description());
         book.setCategory(request.category());
         book.setRead(request.isRead());
-        book.setDateRead(request.dateRead());
+        book.setDate_read(request.date_read());
     }
 }

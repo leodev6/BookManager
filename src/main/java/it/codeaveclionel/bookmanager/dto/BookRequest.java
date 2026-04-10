@@ -27,6 +27,6 @@ public record BookRequest(
         boolean isRead,
 
         @PastOrPresent(message = "La date de lecture ne peut pas etre dans le future")
-        LocalDate dateRead
+        LocalDate date_read
 ) {
 }

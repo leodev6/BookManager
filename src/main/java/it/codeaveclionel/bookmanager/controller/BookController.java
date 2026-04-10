@@ -30,7 +30,7 @@ public class BookController {
     @GetMapping
     @Operation(summary = "Récupérer tous les livres (paginé)")
     public ResponseEntity<Page<BookResponse>> getAllBooks(
-            @PageableDefault(size = 10, sort = "dataAdded", direction = Sort.Direction.DESC)
+            @PageableDefault(size = 10, sort = "dateAdded", direction = Sort.Direction.DESC)
             Pageable pageable) {
         return ResponseEntity.ok(bookService.getAllBooks(pageable));
     }

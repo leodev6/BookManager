@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface BookRepository extends JpaRepository<Book, Long> {
 
     //Reherche par titre (inensible à la casse (EX = jouer <=> JOUER <=> Jouer)
-    Page<Book> findByTitleContainingIngnoreCase(String title, Pageable pageable);
+    Page<Book> findByTitleContainingIgnoreCase(String title, Pageable pageable);
 
     // Filtre par catégorie
     Page<Book> findByCategory(String category, Pageable pageable);
@@ -19,15 +19,15 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     Page<Book> findByIsRead(boolean isRead, Pageable pageable);
 
     // Filtre par catégory + recherche titre
-    Page<Book> findByTitleContainingIngnoreCaseAndCategory(String title, String category, Pageable pageable);
+    Page<Book> findByTitleContainingIgnoreCaseAndCategory(String title, String category, Pageable pageable);
 
     // Filtre titre + statut
-    Page<Book> findByTitleContainingIngnoreCaseAndIsRead(String title, boolean isRead, Pageable pageable);
+    Page<Book> findByTitleContainingIgnoreCaseAndIsRead(String title, boolean isRead, Pageable pageable);
 
     // Filtre combiné titre + catégory + statut
-    Page<Book> findByTitleContainingIngnoreCaseAndCategoryAndIsRead(String title, String category, boolean isRead, Pageable pageable);
+    Page<Book> findByTitleContainingIgnoreCaseAndCategoryAndIsRead(String title, String category, boolean isRead, Pageable pageable);
 
     // Statistiques
-    long contByIsRead(boolean isRead);
+    long countByIsRead(boolean isRead);
 
 }

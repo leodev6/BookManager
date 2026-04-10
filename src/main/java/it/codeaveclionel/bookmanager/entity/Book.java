@@ -45,12 +45,13 @@ public class Book {
     @Column(nullable = false, columnDefinition = "boolean default false")
     private boolean isRead;
 
-    @Column(nullable = false, updatable = false)
+    @Column(name = "date_added", nullable = false, updatable = false)
     private LocalDate dateAdded;
 
     @PastOrPresent(message = "La date de lecture ne peut pas etre dans le future")
-    private LocalDate dateRead;
+    private LocalDate date_read;
 
+    @PrePersist
     protected void onCreate() {
         this.dateAdded = LocalDate.now();
     }
