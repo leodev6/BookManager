@@ -1,8 +1,8 @@
 package it.codeaveclionel.bookmanager.mapper;
 
 import it.codeaveclionel.bookmanager.entity.Book;
-import it.codeaveclionel.bookmanager.request.BookRequest;
-import it.codeaveclionel.bookmanager.response.BookResponse;
+import it.codeaveclionel.bookmanager.dto.BookRequest;
+import it.codeaveclionel.bookmanager.dto.BookResponse;
 import org.springframework.stereotype.Component;
 
 @Component

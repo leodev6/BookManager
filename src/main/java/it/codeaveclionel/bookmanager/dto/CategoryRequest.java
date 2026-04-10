@@ -1,6 +1,5 @@
-package it.codeaveclionel.bookmanager.request;
+package it.codeaveclionel.bookmanager.dto;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 
 public record CategoryRequest(

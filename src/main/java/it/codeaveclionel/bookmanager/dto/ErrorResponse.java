@@ -1,4 +1,4 @@
-package it.codeaveclionel.bookmanager.response;
+package it.codeaveclionel.bookmanager.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
