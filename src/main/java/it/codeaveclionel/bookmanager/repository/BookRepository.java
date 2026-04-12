@@ -18,6 +18,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     // Filtre par statut de lecture
     Page<Book> findByIsRead(boolean isRead, Pageable pageable);
 
+    Page<Book> findByCategoryAndIsRead(String category, boolean isRead, Pageable pageable);
+
     // Filtre par catégory + recherche titre
     Page<Book> findByTitleContainingIgnoreCaseAndCategory(String title, String category, Pageable pageable);
 

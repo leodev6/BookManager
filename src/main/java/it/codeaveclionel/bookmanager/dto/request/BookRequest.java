@@ -1,4 +1,4 @@
-package it.codeaveclionel.bookmanager.dto;
+package it.codeaveclionel.bookmanager.dto.request;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;

@@ -1,4 +1,4 @@
-package it.codeaveclionel.bookmanager.dto;
+package it.codeaveclionel.bookmanager.dto.response;
 
 public record CategoryResponse(
         Long id,

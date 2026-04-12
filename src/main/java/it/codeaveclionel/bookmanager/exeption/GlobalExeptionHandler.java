@@ -1,6 +1,6 @@
 package it.codeaveclionel.bookmanager.exeption;
 
-import it.codeaveclionel.bookmanager.dto.ErrorResponse;
+import it.codeaveclionel.bookmanager.dto.response.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

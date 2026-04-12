@@ -1,4 +1,4 @@
-package it.codeaveclionel.bookmanager.dto;
+package it.codeaveclionel.bookmanager.dto.response;
 
 
 import java.time.LocalDate;
