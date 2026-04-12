@@ -114,6 +114,9 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public StatResponse getStats() {
-        return null;
+        long total = bookRepository.count();
+        long read = bookRepository.countByIsRead(true);
+        long unread = total - read;
+        return new StatResponse(total, read, unread);
     }
 }

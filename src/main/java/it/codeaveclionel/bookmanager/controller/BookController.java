@@ -6,6 +6,8 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import it.codeaveclionel.bookmanager.dto.request.BookRequest;
 import it.codeaveclionel.bookmanager.dto.response.BookResponse;
+import it.codeaveclionel.bookmanager.dto.response.StatResponse;
+import it.codeaveclionel.bookmanager.entity.Book;
 import it.codeaveclionel.bookmanager.service.BookService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -48,7 +50,7 @@ public class BookController {
 
 
 // ---------------------------------------------------------------------
-// GET /api/books -> créer un nouveau un livre
+// POST /api/books -> créer un nouveau un livre
 // ---------------------------------------------------------------------
     @PostMapping
     @Operation(summary = "Créer un nouveau un livre")
@@ -58,7 +60,7 @@ public class BookController {
     }
 
 // ---------------------------------------------------------------------
-// GET /api/books/{id} -> modifier un livre
+// PUT /api/books/{id} -> modifier un livre
 // ---------------------------------------------------------------------
     @PutMapping("/{id}")
     @Operation(summary = "Mettre à jour un livre existant")
@@ -67,7 +69,7 @@ public class BookController {
     }
 
 // ---------------------------------------------------------------------
-// GET /api/books/{id} -> supprimer un livre
+// DELETE /api/books/{id} -> supprimer un livre
 // ---------------------------------------------------------------------
     @DeleteMapping("/{id}")
     @Operation(summary = "Supprimer un livre")
@@ -77,7 +79,7 @@ public class BookController {
     }
 
 // ------------------------------------------------------------------------
-// GET /api/books/{id}/read -> toggle pour changer le statut (lu / non lu)
+// PATCH /api/books/{id}/read -> toggle pour changer le statut (lu / non lu)
 // ------------------------------------------------------------------------
     @PatchMapping("/{id}/read")
     @Operation(summary = "Basculer le statut de lecture d'un livre")
@@ -90,9 +92,30 @@ public class BookController {
 // ------------------------------------------------------------------------
     @GetMapping("/search")
     @Operation(summary = "Rechercher des livres par titre")
-    public ResponseEntity<Page<BookResponse>> searchByTitle(@RequestParam String title,
-                                                            @PageableDefault(size = 10, sort = "title") Pageable pageable) {
+    public ResponseEntity<Page<BookResponse>> searchByTitle(
+            @RequestParam String title,
+            @PageableDefault(size = 10, sort = "title") Pageable pageable) {
         return ResponseEntity.ok(bookService.searchByTitle(title, pageable));
     }
 
+// ----------------------------------------------------------------------------------------------------
+// GET /api/books/filter?category=&isRead= -> filtre les livres par categorie et/ou statut di lettura
+// ----------------------------------------------------------------------------------------------------
+    @GetMapping("/filter")
+    @Operation(summary = "Filtrer les livres par catégory et/ou statut de lecture")
+    public ResponseEntity<Page<BookResponse>> filtersBook(
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) Boolean isRead,
+            @PageableDefault(size = 10, sort = "dateAdded", direction = Sort.Direction.DESC) Pageable pageable) {
+        return ResponseEntity.ok(bookService.filterBooks(category, isRead, pageable));
+    }
+
+// ----------------------------------------------------------------------------
+// GET /api/books/stats -> affiche les statistique (total de livre lu/ non lu
+// ----------------------------------------------------------------------------
+    @GetMapping("/stats")
+    @Operation(summary = "Obtenir les statistiques globales de la bibliothèque")
+    public ResponseEntity<StatResponse> getStats() {
+        return ResponseEntity.ok(bookService.getStats());
+    }
 }
