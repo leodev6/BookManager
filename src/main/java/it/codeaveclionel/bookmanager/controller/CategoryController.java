@@ -3,13 +3,14 @@ package it.codeaveclionel.bookmanager.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import it.codeaveclionel.bookmanager.dto.request.CategoryRequest;
 import it.codeaveclionel.bookmanager.dto.response.CategoryResponse;
 import it.codeaveclionel.bookmanager.service.CategoryService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.processing.SupportedOptions;
 import java.util.List;
@@ -31,4 +32,22 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.getAllCategories());
     }
 
+// ---------------------------------------------------------------------------
+// GET /api/categories/{id} -> récupérer les categories par son identifiant
+// ---------------------------------------------------------------------------
+    @GetMapping("/{id}")
+    @Operation(summary = "Récupérer les categories par son identifiant")
+    public ResponseEntity<CategoryResponse> getCategoryById(@PathVariable Long id) {
+        return ResponseEntity.ok(categoryService.getCategoryById(id));
+    }
+
+// ---------------------------------------------------------------------------
+// POST /api/categories -> créer categories
+// ---------------------------------------------------------------------------
+    @PostMapping
+    @Operation(summary = "Créer categories")
+    public ResponseEntity<CategoryResponse> createCategory(@Valid @RequestBody CategoryRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(categoryService.createCategory(request));
+    }
 }
